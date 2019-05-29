@@ -46,7 +46,7 @@
                                         {{ $product->price }}
                                     </div>
                                     <div class="title">
-                                        {{ $product->title }}
+                                            <a href="{{ route('products.show', ['product' => $product->id]) }}">{{ $product->title }}</a>
                                     </div>
                                 </div>
                                 <div class="bottom">

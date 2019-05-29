@@ -133,4 +133,6 @@ class ProductsController extends Controller
     {
         return $this->form()->store();
     }
+
+
 }
