@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\ProductSku;
 
 class AddCartRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class AddCartRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**

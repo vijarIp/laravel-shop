@@ -120,13 +120,16 @@
     // 加入购物车按钮点击事件
     $('.btn-add-to-cart').click(function() {
         // 请求加入购物车接口
-        axios.post('{{ route('cart.add) }}', {
+        axios.post('{{ route('cart.add') }}', {
             sku_id: $('label.active input[name=skus]').val(),
             amount: $('.cart_amount input').val(),
         })
         .then(function(){
             // 请求成功执行此回调
-            swal('加入购物车成功', '', 'success');
+            swal('加入购物车成功', '', 'success')
+            .then(function() {
+                location.href = '{{ route('cart.index') }}';
+            });
         }, function(error){
             // 请求失败执行此回调
             if(error.response.status === 401){
@@ -136,11 +139,11 @@
                 // Http 状态码为 442 代表用户输入校验失败
                 var html = '<div>';
                 _.each(error.response.data.errors, function(errors) {
-                    ->each(errors, function(error){
+                    _.each(errors, function(error){
                         html += error+'<br>';
                     })
                 });
-                html += '</div>'；
+                html += '</div>';
                 swal({content: $(html)[0], icon: 'error'})
             } else {
                 // 其他情况应该是系统挂了
